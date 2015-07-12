@@ -104,3 +104,31 @@ class TestsTicTacToe:
         with pytest.raises(InvalidMoveError):
             game.player_one.make_move(1, -1)
 
+    def test_a_newly_started_game_cannot_be_over(self):
+        """
+        A new game cannot be considered over.
+        """
+        game = TicTac()
+        assert not game.is_over()
+
+    def test_a_game_with_empty_tiles_cannot_be_over(self):
+        """
+        A game in which there are still empty tiles cannot be considered
+        over.
+        """
+        game = TicTac()
+        game.player_one.make_move(1, 1)
+        assert not game.is_over()
+
+    def test_a_without_empty_tiles_can_be_considered_over(self):
+        """
+        A game in which therer are no more empty tiles can
+        be considered over.
+        """
+        game = TicTac()
+        game.board.body = [
+            ['x', 'x', 'y'],
+            ['y', 'x', 'x'],
+            ['x', 'y', 'x'],
+        ]
+        assert game.is_over()

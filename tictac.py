@@ -29,6 +29,13 @@ class TicTac(object):
         """
         return self.board.body
 
+    def is_over(self):
+        """
+        Check if the game is over. A game is over if all the
+        tiles in a board are completed.
+        """
+        return self.board.is_full()
+
 
 class Board(object):
     """
@@ -50,6 +57,17 @@ class Board(object):
         for row in self.body:
             for column in row:
                 if bool(column):
+                    return False
+        return True
+
+    def is_full(self):
+        """
+        Verify that the board is full. A full board does not contain
+        a single negative value in its body.
+        """
+        for row in self.body:
+            for column in row:
+                if not bool(column):
                     return False
         return True
 
