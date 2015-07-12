@@ -3,7 +3,8 @@
 Practice run at TDD as if you meant it workshop by
 Keith Braithwaite.
 """
-from tictac import TicTac
+from tictac import TicTac, NotInTurnError
+import pytest
 
 
 class TestsTicTacToe:
@@ -24,3 +25,13 @@ class TestsTicTacToe:
         game = TicTac()
         game.player_one.make_move(1, 1)
         assert not game.board.is_empty()
+
+    def test_player_one_cannot_make_consecutive_moves(self):
+        """
+        After player one has make a move it cannot attempt to
+        make another one.
+        """
+        game = TicTac()
+        game.player_one.make_move(1, 1)
+        with pytest.raises(NotInTurnError) as exc_info:
+            game.player_one.make_move(1, 2)
