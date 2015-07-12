@@ -45,3 +45,13 @@ class TestsTicTacToe:
         row = [0,0,0]
         expected = [row, row, row]
         assert game.show_game_board() == expected
+
+    def test_board_reflects_the_movement_made_by_player_one(self):
+        """
+        The board must reflect the movements made by each player
+        after is done.
+        """
+        game = TicTac()
+        game.player_one.make_move(1, 1)
+        expected = [[0,0,0], [0, 'x', 0], [0, 0, 0]]
+        assert game.show_game_board() == expected

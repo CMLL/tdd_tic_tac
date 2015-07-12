@@ -31,8 +31,11 @@ class Board(object):
     """
 
     def __init__(self):
-        row = [0, 0, 0]
-        self.body = [row, row, row]
+        self.body = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ]
 
     def is_empty(self):
         """
