@@ -70,7 +70,7 @@ class Board(object):
         :param coord_x: Integer, x position.
         :param coord_y: Integer, y position.
         """
-        if args[0] > 2 or args[1] > 2:
+        if args[0] < 0 or args[0] > 2 or args[1] < 0 or args[1] > 2:
             raise InvalidMoveError('Invalid move.')
 
     def place_move_in_board(self, mark, *args):

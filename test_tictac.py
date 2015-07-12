@@ -86,3 +86,21 @@ class TestsTicTacToe:
         with pytest.raises(InvalidMoveError):
             game.player_one.make_move(1, 3)
 
+    def test_a_player_cannot_introduce_negative_values_x_axis(self):
+        """
+        If a player tries to make a negative move on the x coordinates
+        a InvalidMove exception must be raised.
+        """
+        game = TicTac()
+        with pytest.raises(InvalidMoveError):
+            game.player_one.make_move(-1, 2)
+
+    def test_a_player_cannot_introduce_negative_value_y_axis(self):
+        """
+        If a player tries to make a negative move on the y coordinates
+        a InvalidMove exception must be raised.
+        """
+        game = TicTac()
+        with pytest.raises(InvalidMoveError):
+            game.player_one.make_move(1, -1)
+
