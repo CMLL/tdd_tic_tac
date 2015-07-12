@@ -63,6 +63,16 @@ class Board(object):
         if bool(self.body[args[0]][args[1]]):
             raise InvalidMoveError('Invalid move.')
 
+    def _check_move_is_inside_board(self, *args):
+        """
+        Check that the move is inside the board.
+
+        :param coord_x: Integer, x position.
+        :param coord_y: Integer, y position.
+        """
+        if args[0] > 2:
+            raise InvalidMoveError('Invalid move.')
+
     def place_move_in_board(self, mark, *args):
         """
         Place a move into the board with the requested mark.
@@ -71,6 +81,7 @@ class Board(object):
         :param coord_x: Integer, x position.
         :param coord_y: Integer, y position.
         """
+        self._check_move_is_inside_board(*args)
         self._check_move_validity(*args)
         self.body[args[0]][args[1]] = mark
 
