@@ -76,3 +76,13 @@ class TestsTicTacToe:
         with pytest.raises(InvalidMoveError):
             game.player_one.make_move(3, 1)
 
+    def test_a_player_cannot_make_a_move_outside_the_y_axis(self):
+        """
+        If a player tries to make a move with the y coordinates
+        outside of the board, then a InvalidMove exception
+        must be raises.
+        """
+        game = TicTac()
+        with pytest.raises(InvalidMoveError):
+            game.player_one.make_move(1, 3)
+
