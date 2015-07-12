@@ -35,3 +35,13 @@ class TestsTicTacToe:
         game.player_one.make_move(1, 1)
         with pytest.raises(NotInTurnError) as exc_info:
             game.player_one.make_move(1, 2)
+
+    def test_board_can_be_visualized_as_a_list_at_game_start(self):
+        """
+        The game board can be visualized as a list of coordinates
+        at game start.
+        """
+        game = TicTac()
+        row = [0,0,0]
+        expected = [row, row, row]
+        assert game.show_game_board() == expected

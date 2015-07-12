@@ -18,6 +18,12 @@ class TicTac(object):
         self.player_one = Player(self, 'x')
         self.last_played = None
 
+    def show_game_board(self):
+        """
+        Show the current status of the game board.
+        """
+        return self.board.body
+
 
 class Board(object):
     """
@@ -26,20 +32,20 @@ class Board(object):
 
     def __init__(self):
         row = [0, 0, 0]
-        self._body = [row, row, row]
+        self.body = [row, row, row]
 
     def is_empty(self):
         """
         Verify that the board is empty. A board is empty if all the rows
         are contain only 0.
         """
-        for row in self._body:
+        for row in self.body:
             for column in row:
                 if bool(column):
                     return False
         return True
 
-    def place_move(self, mark, *args):
+    def place_move_in_board(self, mark, *args):
         """
         Place a move into the board with the requested mark.
 
@@ -47,7 +53,7 @@ class Board(object):
         :param coord_x: Integer, x position.
         :param coord_y: Integer, y position.
         """
-        self._body[args[0]][args[1]] = mark
+        self.body[args[0]][args[1]] = mark
 
 
 class Player(object):
@@ -82,5 +88,5 @@ class Player(object):
         :param coord_y: Integer, must be between 0 and 2.
         """
         self._check_if_is_my_turn()
-        self.game.board.place_move(self.player_mark, coord_x, coord_y)
+        self.game.board.place_move_in_board(self.player_mark, coord_x, coord_y)
         self._mark_my_turn_as_done()
