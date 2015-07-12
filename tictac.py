@@ -8,6 +8,10 @@ class NotInTurnError(Exception):
     pass
 
 
+class InvalidMoveError(Exception):
+    pass
+
+
 class TicTac(object):
     """
     Game of Tic Tac Toe.
@@ -16,6 +20,7 @@ class TicTac(object):
     def __init__(self):
         self.board = Board()
         self.player_one = Player(self, 'x')
+        self.player_two = Player(self, 'y')
         self.last_played = None
 
     def show_game_board(self):
@@ -48,6 +53,16 @@ class Board(object):
                     return False
         return True
 
+    def _check_move_validity(self, *args):
+        """
+        Check that the move to be made is a valid one.
+
+        :param coord_x: Integer, x position.
+        :param coord_y: Integer, y position.
+        """
+        if bool(self.body[args[0]][args[1]]):
+            raise InvalidMoveError('Invalid move.')
+
     def place_move_in_board(self, mark, *args):
         """
         Place a move into the board with the requested mark.
@@ -56,6 +71,7 @@ class Board(object):
         :param coord_x: Integer, x position.
         :param coord_y: Integer, y position.
         """
+        self._check_move_validity(*args)
         self.body[args[0]][args[1]] = mark
 
 

@@ -3,7 +3,7 @@
 Practice run at TDD as if you meant it workshop by
 Keith Braithwaite.
 """
-from tictac import TicTac, NotInTurnError
+from tictac import TicTac, NotInTurnError, InvalidMoveError
 import pytest
 
 
@@ -55,3 +55,14 @@ class TestsTicTacToe:
         game.player_one.make_move(1, 1)
         expected = [[0,0,0], [0, 'x', 0], [0, 0, 0]]
         assert game.show_game_board() == expected
+
+    def test_board_does_not_let_a_move_into_occupied_space(self):
+        """
+        If a player tries to make a move into a space already occupied by
+        another player, a error will be raised.
+        """
+        game = TicTac()
+        game.player_one.make_move(1, 1)
+        with pytest.raises(InvalidMoveError):
+            game.player_two.make_move(1, 1)
+
