@@ -171,3 +171,15 @@ class TestsTicTacToe:
             ['y', 'y', 'x'],
         ]
         assert game.who_won() == game.player_one
+
+    def test_a_player_can_win_by_filling_a_second_diagonal(self):
+        """
+        A player can win by filling the second diagonal.
+        """
+        game = TicTac()
+        game.board.body = [
+            ['x', 'x', 'y'],
+            ['x', 'y', 'x'],
+            ['y', 'x', 'y'],
+        ]
+        assert game.who_won() == game.player_two

@@ -139,10 +139,25 @@ class Board(object):
         return True
 
     def _check_first_diagonal(self, player_mark):
+        """
+        Check the validity of the first diagonal of the
+        board.
+
+        :param player_mark: String, player identification.
+        """
         for row in range(3):
             if self.body[row][row] != player_mark:
                 return False
         return True
+
+    def _check_second_diagonal(self, player_mark):
+        """
+        Check the validity of the second diagonal of the board.
+
+        :param player_mark: String, player identification.
+        """
+        return self.body[0][2] == self.body[1][1] == \
+            self.body[2][0] == player_mark
 
     def check_if_player_won(self, player):
         """
@@ -156,6 +171,8 @@ class Board(object):
             elif self._check_column(self.body.index(row), player.player_mark):
                 return True
             elif self._check_first_diagonal(player.player_mark):
+                return True
+            elif self._check_second_diagonal(player.player_mark):
                 return True
 
 
