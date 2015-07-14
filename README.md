@@ -3,7 +3,7 @@
 ### Tic Tac Toe
 
 Game developed in Python to practice a pure TDD workflow as suggested
-by Keith Braithwaite in the __TDD as if you meant it.__ workshop.
+by Keith Braithwaite in the __TDD as if you meant it__ workshop.
 
 http://www.infoq.com/presentations/TDD-as-if-You-Meant-It
 
