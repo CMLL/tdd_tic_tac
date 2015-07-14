@@ -183,3 +183,15 @@ class TestsTicTacToe:
             ['y', 'x', 'y'],
         ]
         assert game.who_won() == game.player_two
+
+    def test_a_game_without_a_clear_victor_is_a_draw(self):
+        """
+        A game without victor is a draw.
+        """
+        game = TicTac()
+        game.board.body = [
+            ['y', 'x', 'y'],
+            ['y', 'x', 'y'],
+            ['x', 'y', 'x'],
+        ]
+        assert game.is_a_draw()

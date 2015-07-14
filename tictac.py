@@ -45,6 +45,12 @@ class TicTac(object):
         elif self.board.check_if_player_won(self.player_two):
             return self.player_two
 
+    def is_a_draw(self):
+        """
+        Return wheter the game is a draw or not.
+        """
+        return not bool(self.who_won())
+
 
 class Board(object):
     """
