@@ -42,6 +42,8 @@ class TicTac(object):
         """
         if self.board.check_if_player_won(self.player_one):
             return self.player_one
+        elif self.board.check_if_player_won(self.player_two):
+            return self.player_two
 
 
 class Board(object):
@@ -115,13 +117,26 @@ class Board(object):
         Check a row of the board to check if all tiles match
         a player mark.
 
-        :param row: List, set of 3 tiles.
+        :param row: List, sequence of 3 tiles.
         :param player_mark: String, a mark to represent a player.
         """
         for tile in row:
             if tile != player_mark:
                 return False
-            return True
+        return True
+
+    def _check_column(self, column, player_mark):
+        """
+        Check if a player has won by placing its mark on the
+        columns.
+
+        :param column: Integer, column to check in board.
+        :param player_mark: String, mark of a player.
+        """
+        for row in range(3):
+            if self.body[row][column] != player_mark:
+                return False
+        return True
 
     def check_if_player_won(self, player):
         """
@@ -132,6 +147,9 @@ class Board(object):
         for row in self.body:
             if self._check_row(row, player.player_mark):
                 return True
+            elif self._check_column(self.body.index(row), player.player_mark):
+                return True
+
 
 class Player(object):
     """

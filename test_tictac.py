@@ -145,3 +145,16 @@ class TestsTicTacToe:
             ['y', 'y', 'x'],
         ]
         assert game.who_won() == game.player_one
+
+    def test_a_player_can_win_by_having_a_column_filled(self):
+        """
+        The player can win by having a complete column with
+        its mark.
+        """
+        game = TicTac()
+        game.board.body = [
+            ['x', 'x', 'y'],
+            ['y', 'x', 'y'],
+            ['x', 'y', 'y'],
+        ]
+        assert game.who_won() == game.player_two
