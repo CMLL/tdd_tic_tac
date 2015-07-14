@@ -36,6 +36,13 @@ class TicTac(object):
         """
         return self.board.is_full()
 
+    def who_won(self):
+        """
+        Return the winning player.
+        """
+        if self.board.check_if_player_won(self.player_one):
+            return self.player_one
+
 
 class Board(object):
     """
@@ -103,6 +110,28 @@ class Board(object):
         self._check_move_validity(*args)
         self.body[args[0]][args[1]] = mark
 
+    def _check_row(self, row, player_mark):
+        """
+        Check a row of the board to check if all tiles match
+        a player mark.
+
+        :param row: List, set of 3 tiles.
+        :param player_mark: String, a mark to represent a player.
+        """
+        for tile in row:
+            if tile != player_mark:
+                return False
+            return True
+
+    def check_if_player_won(self, player):
+        """
+        Check if the player passed to it has won the game.
+
+        :param player: Player object.
+        """
+        for row in self.body:
+            if self._check_row(row, player.player_mark):
+                return True
 
 class Player(object):
     """

@@ -132,3 +132,16 @@ class TestsTicTacToe:
             ['x', 'y', 'x'],
         ]
         assert game.is_over()
+
+    def test_a_player_wons_by_having_any_row_with_its_mark(self):
+        """
+        The first player can win by having any row complete
+        with its mark.
+        """
+        game = TicTac()
+        game.board.body = [
+            ['x', 'x', 'x'],
+            ['x', 'y', 'y'],
+            ['y', 'y', 'x'],
+        ]
+        assert game.who_won() == game.player_one
