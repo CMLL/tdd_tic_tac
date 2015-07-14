@@ -138,6 +138,12 @@ class Board(object):
                 return False
         return True
 
+    def _check_first_diagonal(self, player_mark):
+        for row in range(3):
+            if self.body[row][row] != player_mark:
+                return False
+        return True
+
     def check_if_player_won(self, player):
         """
         Check if the player passed to it has won the game.
@@ -148,6 +154,8 @@ class Board(object):
             if self._check_row(row, player.player_mark):
                 return True
             elif self._check_column(self.body.index(row), player.player_mark):
+                return True
+            elif self._check_first_diagonal(player.player_mark):
                 return True
 
 
