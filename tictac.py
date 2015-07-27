@@ -34,7 +34,7 @@ class TicTac(object):
         Check if the game is over. A game is over if all the
         tiles in a board are completed.
         """
-        return self.board.is_full()
+        return self.who_won() or self.board.is_full()
 
     def who_won(self):
         """

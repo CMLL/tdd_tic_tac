@@ -195,3 +195,12 @@ class TestsTicTacToe:
             ['x', 'y', 'x'],
         ]
         assert game.is_a_draw()
+
+    def test_a_game_can_be_over_once_one_player_has_won(self):
+        game = TicTac()
+        game.board.body = [
+            ['y', 0, 0],
+            ['y', 0, 0],
+            ['y', 'x', 0],
+        ]
+        assert game.is_over()
